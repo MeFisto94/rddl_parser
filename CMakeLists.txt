@@ -10,7 +10,7 @@ else()
     message(STATUS "LBITS: Using the -m32 flag")
     SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
 endif(LBITS EQUAL 64)
-SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -W -Wno-sign-compare -Wno-deprecated -ansi -pedantic -Werror -std=c++0x")
+SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -W -Wno-sign-compare -Wno-deprecated -ansi -pedantic -Werror -std=c++11")
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -fomit-frame-pointer -DNDEBUG")
@@ -57,7 +57,7 @@ set(RDDL_PARSER_HEADERS
 # Compile
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR}) # To find generated header files from BISON
-add_executable(RDDL_parser ${RDDL_PARSER_SOURCES} ${RDDL_PARSER_HEADERS}
+add_executable(rddl_parser ${RDDL_PARSER_SOURCES} ${RDDL_PARSER_HEADERS}
         ${BISON_RDDL_PARSER_OUTPUTS}
         ${FLEX_RDDL_SCANNER_OUTPUTS}
         )
