@@ -11,20 +11,22 @@
 #include "logical_expressions.h"
 #include "rddl.h"
 
+
 void lex_error(char c) {
-    std::cerr << "\033[1;31mLexical ERROR! \033[0m Unknown char " << c
+    std::cerr << "\033[1;31mLexical ERROR! \033[0m Unknown char ''" << c << "' at line " << yylineno
               << std::endl;
     exit(EXIT_FAILURE);
 }
 
 void yyerror (std::string message) {
     extern int yylineno;
-    std::cerr << "\033[1;31mERROR! \033[0m Unknown token: " << yytext
-              << " at line " << yylineno << ": "  << message << std::endl;
+    std::cerr << "\033[1;31mERROR! \033[0m Unknown token: \"" << yytext
+              << "\" at line " << yylineno << ": "  << message << std::endl;
     exit(EXIT_FAILURE);
 }
 
 #include "parser.tab.hh"
+#define YY_USER_ACTION yylloc.first_line = yylloc.last_line = yylineno;
 
 %}
 

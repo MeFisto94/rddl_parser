@@ -91,6 +91,7 @@ RDDLTask* rddlTask;
 %left '+' '-'
 %left '*' '/'
 %nonassoc NEGATIVE
+%locations
 
 %%
 
@@ -285,7 +286,7 @@ VariableExpression: id_token                        {
                                                       if (rddlTask->variableDefinitions.find(varName) != rddlTask->variableDefinitions.end()) {
                                                         $$ = rddlTask->variableDefinitions[varName];
                                                       } else {
-                                                        SystemUtils::abort("Unknown parametrized variable " + varName + ".");
+                                                        SystemUtils::abort("Unknown parametrized variable " + varName + " at line "+ std::to_string(@1.first_line) + ".");
                                                       }
                                                       $$ = new ParametrizedVariable(*(rddlTask->variableDefinitions[varName]), std::vector<Parameter*>());
                                                     }
@@ -298,7 +299,7 @@ VariableExpression: id_token                        {
                                                       if (rddlTask->variableDefinitions.find(varName) != rddlTask->variableDefinitions.end()) {
                                                         $$ = rddlTask->variableDefinitions[varName];
                                                       } else {
-                                                        SystemUtils::abort("Unknown parametrized variable " + varName + ".");
+                                                        SystemUtils::abort("Unknown parametrized variable " + varName + " at line "+ std::to_string(@1.first_line) + ".");
                                                       }
                                                       $$ = new ParametrizedVariable(*(rddlTask->variableDefinitions[varName]), *$3);
                                                     }
@@ -761,7 +762,7 @@ PositiveIntOrPositiveInfinity: intNum_token                { $$ = $1; }
 
 %%
 
-bool checkExtension(std::string s) {
+/*bool checkExtension(std::string s) {
      return ((s.length() > 5) &&  (s.substr(s.length() - 5).compare(".rddl") == 0));
 }
 
@@ -827,3 +828,4 @@ int main (int argc, char** argv) {
 
     return EXIT_SUCCESS;
 }
+*/
