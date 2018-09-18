@@ -38,7 +38,8 @@ set(RDDL_PARSER_SOURCES
         utils/timer.cc
         utils/string_utils.cc
         utils/system_utils.cc
-        utils/math_utils.cc)
+        utils/math_utils.cc
+        RDDLParser.cpp)
 
 set(RDDL_PARSER_HEADERS
         rddl.h
@@ -52,7 +53,8 @@ set(RDDL_PARSER_HEADERS
         utils/timer.h
         utils/string_utils.h
         utils/system_utils.h
-        utils/math_utils.h)
+        utils/math_utils.h
+        RDDLParser.h)
 
 # Compile
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})

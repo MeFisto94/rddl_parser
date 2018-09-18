@@ -1,3 +1,6 @@
+//%name-prefix "rddl_yy" // To avoid conflicts with VAL pddl parser, it changes the default "yy" prefix in parser methods
+%define api.prefix {rddl_yy} // To avoid conflicts with VAL pddl parser, it changes the default "yy" prefix in parser methods
+
 %{
 #include <cstdlib>
 #include <cstdio>

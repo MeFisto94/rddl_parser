@@ -11,11 +11,7 @@
 #include "rddl.h"
 #include "utils/system_utils.h"
 #include "utils/timer.h"
-
-extern int yyparse();
-typedef struct yy_buffer_state* YY_BUFFER_STATE;
-extern YY_BUFFER_STATE yy_scan_string(const char * str);
-extern RDDLTask* rddlTask;
+#include "RDDLParser.h"
 
 
 bool checkExtension(std::string s) {
@@ -31,13 +27,15 @@ int main (int argc, char** argv) {
     }
 
     // Find input files and combine them in one file
-    std::stringstream combined;
+    //std::stringstream combined;
     unsigned int index = 1;
+    std::vector<std::string> files(3, "");
 
     while (index < argc && checkExtension(argv[index])) {
-        std::ifstream ifs(argv[index], std::ifstream::in);
-        combined << ifs.rdbuf();
-        ifs.close();
+        //std::ifstream ifs(argv[index], std::ifstream::in);
+        //combined << ifs.rdbuf();
+        //ifs.close();
+        files[index-1] = argv[index]; // Store them in a vector
         index++;
     }
     if (index == 1 || index > 4 || index >= argc) {
@@ -73,13 +71,16 @@ int main (int argc, char** argv) {
     }
 
     // Creating RDDLTask object
-    rddlTask = new RDDLTask();
+    //rddlTask = new RDDLTask();
 
-    yy_scan_string(combined.str().c_str());
-    yyparse();
+    //yy_scan_string(combined.str().c_str());
+    //yyparse();
+
+    RDDLTask *task = RDDLParser::parseRDDLTask(files[0], files[1], files[2]);
+
     std::cout << "...finished (" << t << ")." << std::endl;
 
-    rddlTask->execute(targetDir, seed, numStates, numSimulations, useIPC2018Rules);
+    task->execute(targetDir, seed, numStates, numSimulations, useIPC2018Rules);
     std::cout << "total time: " << t << std::endl;
 
     return EXIT_SUCCESS;
