@@ -57,7 +57,13 @@ set(RDDL_PARSER_HEADERS
 # Compile
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR}) # To find generated header files from BISON
-add_executable(rddl_parser ${RDDL_PARSER_SOURCES} ${RDDL_PARSER_HEADERS}
+
+add_library(rddl_parser SHARED
         ${BISON_RDDL_PARSER_OUTPUTS}
         ${FLEX_RDDL_SCANNER_OUTPUTS}
-        )
+        ${RDDL_PARSER_SOURCES}
+        ${RDDL_PARSER_HEADERS})
+
+add_executable(parse_rddl
+        parser_main.cpp)
+target_link_libraries(parse_rddl rddl_parser)
