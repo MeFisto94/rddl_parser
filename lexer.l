@@ -1,4 +1,4 @@
- /* The %option is to avoid conflicts with VAL pddl parser, it changes the default "yy" prefix in parser methods */
+/* The %option is to avoid conflicts with VAL pddl parser, it changes the default "yy" prefix in parser methods */
 %option prefix="rddl_yy"
 %option noyywrap
 %option yylineno
