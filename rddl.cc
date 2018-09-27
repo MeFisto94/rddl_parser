@@ -378,9 +378,9 @@ void RDDLTask::print(std::ostream& out) {
         out << "## values" << std::endl;
         for (std::set<double>::iterator it = CPFs[index]->domain.begin();
              it != CPFs[index]->domain.end(); ++it) {
-            out << *it << " "
-                << CPFs[index]->head->valueType->objects[*it]->name
-                << std::endl;
+            if (CPFs[index]->head->valueType->name == "int" or
+                CPFs[index]->head->valueType->name == "real") out << *it << " " << *it << std::endl;
+            else out << *it << " " << CPFs[index]->head->valueType->objects[*it]->name << std::endl;
         }
 
         out << "## formula" << std::endl;

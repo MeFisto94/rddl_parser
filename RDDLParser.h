@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 
+#include "evaluatables.h"
 #include "logical_expressions.h"
 #include "rddl.h"
 
