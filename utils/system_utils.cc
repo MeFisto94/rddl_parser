@@ -11,10 +11,12 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
+#include "sys/stat.h"
 #include "sys/sysinfo.h"
 #include "sys/times.h"
 #include "sys/types.h"
 #include "sys/vtimes.h"
+
 
 clock_t SystemUtils::start = 0;
 clock_t SystemUtils::lastCPU = 0;
