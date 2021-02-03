@@ -22,6 +22,9 @@ struct State {
     State(State const& other) : state(other.state) {}
     State(int stateSize) : state(stateSize, 0.0) {}
 
+    // Explictly allow copy constructors
+    State& operator=(const State& other) = default;
+
     double& operator[](int const& index) {
         assert(index < state.size());
         return state[index];
